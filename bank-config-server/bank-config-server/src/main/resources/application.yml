@@ -1,1 +1,29 @@
-spring.application.name=bank-config-server
+server:
+  port: 8888
+
+spring:
+  application:
+    name: bank-config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/LeoninRahulDas/banking-config-repo.git
+          default-label: main
+          clone-on-start: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    health:
+      show-details: always
